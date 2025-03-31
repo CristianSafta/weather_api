@@ -1,6 +1,11 @@
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
+
+/**
+ * Represents the root weather data structure returned from the OpenWeatherMap API.
+ * It contains geographic information, timezone details, and the current weather.
+ */
 public class WeatherData {
 
     private double lat;
@@ -28,6 +33,8 @@ public class WeatherData {
 
     /**
      * Produces a more human-readable weather summary.
+     *
+     * @return A string summary including location, timezone, and current conditions.
      */
     @Override
     public String toString() {
@@ -47,9 +54,9 @@ public class WeatherData {
         return sb.toString();
     }
 
-    // =======================
-    // Nested 'Current' class
-    // =======================
+    /**
+     * Encapsulates the current weather data from the API.
+     */
     public static class Current {
         private long dt;
         private long sunrise;
@@ -115,6 +122,8 @@ public class WeatherData {
 
         /**
          * Creates a simple multi-line summary of current conditions.
+         *
+         * @return A nicely formatted string of temperature, humidity, cloudiness, etc.
          */
         @Override
         public String toString() {
@@ -144,9 +153,10 @@ public class WeatherData {
         }
     }
 
-    // ======================
-    // Nested 'Weather' class
-    // ======================
+    /**
+     * Describes a high-level weather condition.
+     * Includes a general category, more detailed description, and icon ID.
+     */
     public static class Weather {
         private int id;
         private String main;
@@ -176,9 +186,10 @@ public class WeatherData {
         }
     }
 
-    // =====================
-    // Nested 'Rain' class
-    // =====================
+    /**
+     * Represents rain volume for the past hour.
+     * This field may be {@code null} if no rain occurred.
+     */
     public static class Rain {
         @SerializedName("1h")
         private double oneHour;
